@@ -1,0 +1,24 @@
+.stSelectbox [data-baseweb="select"] {
+  width: 800px;
+}
+.stSelectbox label {
+  display: block;
+  width: 800px;
+  text-align: center;
+}
+.stSelectbox [data-baseweb="select"] > div > div > div:first-child {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-left: 32px;
+}
+[data-testid="stVirtualDropdown"] li {
+  text-align: center;
+}
+.footer {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: silver;
+}
