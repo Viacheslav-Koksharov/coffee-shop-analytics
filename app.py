@@ -16,11 +16,11 @@ st.title("Data analysis of Coffee shop sales")
 
 @st.cache_data
 def load_data():
-    df = pd.read_excel('Coffee Shop Sales.xlsx', sheet_name="Transactions")    
+    df = pd.read_excel('CoffeeShopSales.xlsx', sheet_name="Transactions")    
     return df
 
 data_load_state = st.text('Loading data...')
-df = load_data()
+df = load_data().copy()
 data_load_state.text("Done! (using cache)")
 
 st.dataframe(df.head(5))
