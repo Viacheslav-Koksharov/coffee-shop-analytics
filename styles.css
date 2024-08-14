@@ -1,9 +1,13 @@
+body {
+  background-color: #0e1117;
+  color: #fafafa;
+}
 .stSelectbox [data-baseweb="select"] {
-  width: 800px;
+  width: 700px;
 }
 .stSelectbox label {
   display: block;
-  width: 800px;
+  width: 700px;
   text-align: center;
 }
 .stSelectbox [data-baseweb="select"] > div > div > div:first-child {

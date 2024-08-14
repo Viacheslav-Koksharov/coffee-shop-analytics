@@ -15,7 +15,7 @@ def revenue_by_month(df):
         x='Month:T',
         y='Revenue:Q'
         ).properties(
-        width=800,
+        width=700,
         height=400
         ).interactive()
 
@@ -57,11 +57,11 @@ def transaction_by_location_chart(df):
     range=["#379683", "#EDF5E1", "#7395AE"],
     )
     bars = alt.Chart(transaction_by_location).mark_bar().encode(
-    x=alt.X("store_location:N", axis=alt.Axis(labelAngle=0)),
-    y="transaction_qty:Q",
-    color=alt.Color("store_location:N", scale=scale)
+    x=alt.X("store_location:N", axis=alt.Axis(labelAngle=0, title="Store location")),
+    y=alt.Y("transaction_qty:Q",axis=alt.Axis(title="Transaction Count")),
+    color=alt.Color("store_location:N", scale=scale, legend=None)
     ).properties(
-    width=800,
+    width=700,
     height=400
     ).interactive()
 
@@ -81,10 +81,10 @@ def transaction_by_product_category_chart(df):
     transaction_by_product_category = transaction_by_product_category.sort_values(by="transaction_id", ascending=False)
 
     barsCTPC = alt.Chart(transaction_by_product_category).mark_bar().encode(
-        y=alt.Y("product_category:N", sort="-x", axis=alt.Axis(labelAngle=0)),
-        x="transaction_id:Q",
+        y=alt.Y("product_category:N", sort="-x", axis=alt.Axis(labelAngle=0,title="Product category")),
+        x=alt.X("transaction_id:Q",axis=alt.Axis(title="Transaction Count")),
     ).properties(
-        width=700,
+        width=800,
         height=400
     ).interactive()
 
@@ -104,7 +104,7 @@ def revenue_by_product_category_chart(df):
     revenue_by_product_category = df.groupby(["product_category"])[["Revenue"]].sum().reset_index()
     revenue_by_product_category = revenue_by_product_category.sort_values(by="Revenue", ascending=False)
     barsRPC = alt.Chart(revenue_by_product_category).mark_bar(color="#7395AE").encode(
-    y=alt.Y("product_category:N", sort="-x", axis=alt.Axis(labelAngle=0)),
+    y=alt.Y("product_category:N", sort="-x", axis=alt.Axis(labelAngle=0,title="Product Category")),
     x="Revenue:Q",
     ).properties(
     width=800,
@@ -127,11 +127,11 @@ def transaction_by_product_type_chart(df):
     transaction_by_product_type = transaction_by_product_type.sort_values(by="transaction_id", ascending=False)
 
     barsCTPT = alt.Chart(transaction_by_product_type).mark_bar().encode(
-        y=alt.Y("product_type:N", sort="-x", axis=alt.Axis(labelAngle=0)),
-        x="transaction_id:Q",
+        y=alt.Y("product_type:N", sort="-x", axis=alt.Axis(labelAngle=0,title="Product Type")),
+        x=alt.X("transaction_id:Q",axis=alt.Axis(title="Transaction Count")),
     ).properties(
-        width=700,
-        height=400
+        width=800,
+        height=700
     ).interactive()
 
     textCTPT = barsCTPT.mark_text(
@@ -149,11 +149,11 @@ def revenue_by_product_type_chart(df):
     revenue_by_product_type = df.groupby(["product_type"])[["Revenue"]].sum().reset_index()
     revenue_by_product_type = revenue_by_product_type.sort_values(by="Revenue", ascending=False)
     barsRPT = alt.Chart(revenue_by_product_type).mark_bar(color="#7395AE").encode(
-    y=alt.Y("product_type:N", sort="-x", axis=alt.Axis(labelAngle=0)),
+    y=alt.Y("product_type:N", sort="-x", axis=alt.Axis(labelAngle=0,title="Product Type")),
     x="Revenue:Q",
     ).properties(
     width=800,
-    height=400
+    height=700
     ).interactive()
 
     textRPT = barsRPT.mark_text(
