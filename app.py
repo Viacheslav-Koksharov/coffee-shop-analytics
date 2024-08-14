@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
-import altair as alt
 from datetime import datetime
 from charts import revenue_by_month, transaction_by_location_chart,transaction_by_product_category_chart, revenue_by_product_category_chart,transaction_by_product_type_chart,revenue_by_product_type_chart
 
 st.set_page_config(
-    page_title="Coffee Shop Sales Analysis",
-    page_icon="☕"
-)
+        page_title="Coffee Shop Sales Analysis",
+        page_icon="☕"
+    )    
 
 with open("styles.css") as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

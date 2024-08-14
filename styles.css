@@ -2,6 +2,14 @@ body {
   background-color: #0e1117;
   color: #fafafa;
 }
+.stApp {
+  background-color: #0e1117;
+}
+
+.stButton button {
+  background-color: #ff4b4b;
+  color: white;
+}
 .stSelectbox [data-baseweb="select"] {
   width: 700px;
 }
