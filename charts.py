@@ -4,15 +4,16 @@ import altair as alt
 
 def revenue_by_month(df):
     df['transaction_date'] = pd.to_datetime(df['transaction_date'])
-    df['Month'] = df['transaction_date'].dt.to_period('M').astype(str)
+    df['Month'] = df['transaction_date'].dt.strftime('%b')
     df_grouped = df.groupby(['Month', 'store_location'])['Revenue'].sum().reset_index()
+    month_order = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     options = ["Main revenue"] + df['store_location'].unique().tolist()
     option = st.selectbox("Select a display type:", options)
 
     if option == "Main revenue":
         revenue_by_mohth = df_grouped.groupby('Month')['Revenue'].sum().reset_index()    
         chart = alt.Chart(revenue_by_mohth).mark_line(point=True).encode(
-        x='Month:T',
+        x=alt.X('Month:N', title='Month', sort=month_order, axis=alt.Axis(labelAngle=0)),
         y='Revenue:Q'
         ).properties(
         width=700,
@@ -32,7 +33,7 @@ def revenue_by_month(df):
     else:
         revenue_by_location = df_grouped[df_grouped['store_location'] == option]
         chart = alt.Chart(revenue_by_location).mark_line(point=True).encode(
-        x='Month:T',
+        x=alt.X('Month:N', title='Month', sort=month_order, axis=alt.Axis(labelAngle=0)),
         y='Revenue:Q'
         ).properties(
         width=800,
@@ -49,16 +50,16 @@ def revenue_by_month(df):
         text='Revenue:Q'
         )
         return(chart + text)
-
+    
 def transaction_by_location_chart(df):
-    transaction_by_location = df.groupby(["store_location"])[["transaction_qty"]].sum().reset_index()
+    transaction_by_location = df.groupby(["store_location"])[["transaction_id"]].count().reset_index()
     scale = alt.Scale(
     domain=["Lower Manhattan", "Hell's Kitchen", "Astoria"],
     range=["#379683", "#EDF5E1", "#7395AE"],
     )
     bars = alt.Chart(transaction_by_location).mark_bar().encode(
     x=alt.X("store_location:N", axis=alt.Axis(labelAngle=0, title="Store location")),
-    y=alt.Y("transaction_qty:Q",axis=alt.Axis(title="Transaction  Count")),
+    y=alt.Y("transaction_id:Q",axis=alt.Axis(title="Transaction  Count")),
     color=alt.Color("store_location:N", scale=scale, legend=None)
     ).properties(
     width=700,
@@ -72,10 +73,10 @@ def transaction_by_location_chart(df):
     fontSize=12, 
     color="silver"
     ).encode(
-    text='transaction_qty:Q',
+    text='transaction_id:Q',
     )
     return bars + text
-
+    
 def transaction_by_product_category_chart(df):
     transaction_by_product_category = df.groupby(["product_category"])[["transaction_id"]].count().reset_index()
     transaction_by_product_category = transaction_by_product_category.sort_values(by="transaction_id", ascending=False)
