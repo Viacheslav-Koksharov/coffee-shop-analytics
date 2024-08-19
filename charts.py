@@ -36,7 +36,7 @@ def revenue_by_month(df):
         x=alt.X('Month:N', title='Month', sort=month_order, axis=alt.Axis(labelAngle=0)),
         y='Revenue:Q'
         ).properties(
-        width=800,
+        width=700,
         height=400
         ).interactive()
 

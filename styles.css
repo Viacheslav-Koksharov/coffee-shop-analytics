@@ -1,20 +1,32 @@
+.block-container.st-emotion-cache-13ln4jf.ea3mdgi5 {
+  padding: 6rem 1rem 1rem;
+}
+
+.marks {
+  width: 700px;
+}
+
 .stSelectbox [data-baseweb="select"] {
   width: 700px;
 }
+
 .stSelectbox label {
   display: block;
   width: 700px;
   text-align: center;
 }
+
 .stSelectbox [data-baseweb="select"] > div > div > div:first-child {
   display: block;
   width: 100%;
   text-align: center;
   padding-left: 32px;
 }
+
 [data-testid="stVirtualDropdown"] li {
   text-align: center;
 }
+
 .footer {
   display: block;
   width: 100%;
