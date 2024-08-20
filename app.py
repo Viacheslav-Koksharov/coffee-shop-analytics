@@ -1,7 +1,14 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from charts import revenue_by_month, transaction_by_location_chart,transaction_by_product_category_chart, revenue_by_product_category_chart,transaction_by_product_type_chart,revenue_by_product_type_chart
+from charts import (
+    revenue_by_month, 
+    transaction_by_location_chart,
+    transaction_by_product_category_chart,
+    revenue_by_product_category_chart,
+    transaction_by_product_type_chart,
+    revenue_by_product_type_chart
+    )
 
 st.set_page_config(
         page_title="Coffee Shop Sales Analysis",
@@ -50,4 +57,4 @@ with tab1:
 with tab2:
     st.altair_chart(RPT, theme="streamlit", use_container_width=True)
 
-st.markdown(f'<span class="footer">© {datetime.now().year} Viacheslav Koksharov</span>', unsafe_allow_html=True)
+st.markdown(f'<span class="footer">©  {datetime.now().year}  Viacheslav Koksharov</span>', unsafe_allow_html=True)
